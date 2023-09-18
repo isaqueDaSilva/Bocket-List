@@ -11,6 +11,7 @@
 		7E06B8912AB8F1310091D146 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E06B8902AB8F1310091D146 /* ContentView.swift */; };
 		7E06B8932AB8F1330091D146 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E06B8922AB8F1330091D146 /* Assets.xcassets */; };
 		7E06B8962AB8F1330091D146 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E06B8952AB8F1330091D146 /* Preview Assets.xcassets */; };
+		7EC218852ABA6C6500D03C01 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC218842ABA6C6500D03C01 /* AuthenticationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		7E06B8902AB8F1310091D146 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7E06B8922AB8F1330091D146 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7E06B8952AB8F1330091D146 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7EC218842ABA6C6500D03C01 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				7E06B88E2AB8F1310091D146 /* BocketListApp.swift */,
 				7E06B8902AB8F1310091D146 /* ContentView.swift */,
+				7EC218842ABA6C6500D03C01 /* AuthenticationManager.swift */,
 				7E06B8922AB8F1330091D146 /* Assets.xcassets */,
 				7E06B8942AB8F1330091D146 /* Preview Content */,
 			);
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EC218852ABA6C6500D03C01 /* AuthenticationManager.swift in Sources */,
 				7E06B8912AB8F1310091D146 /* ContentView.swift in Sources */,
 				7E06B88F2AB8F1310091D146 /* BocketListApp.swift in Sources */,
 			);
