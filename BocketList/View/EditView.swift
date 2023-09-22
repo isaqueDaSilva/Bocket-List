@@ -17,6 +17,23 @@ struct EditView: View {
                     TextField("Insert the name of place...", text: $viewModel.name)
                     TextField("Insert a description for the place...", text: $viewModel.description)
                 }
+                
+                Section("Nearby...") {
+                    switch viewModel.loadingState {
+                    case .loading:
+                        ProgressView()
+                    case .loaded:
+                        ForEach(viewModel.pages, id: \.pageid) {
+                            Text($0.title)
+                                .font(.headline)
+                            + Text(": ") +
+                            Text($0.description)
+                                .italic()
+                        }
+                    case .failed:
+                        Text("Please try again later...")
+                    }
+                }
             }
             .navigationTitle("Place Details")
             .toolbar {
@@ -33,6 +50,7 @@ struct EditView: View {
                     }
                 }
             }
+            .task { await viewModel.fetchNearbyPlaces() }
         }
     }
     

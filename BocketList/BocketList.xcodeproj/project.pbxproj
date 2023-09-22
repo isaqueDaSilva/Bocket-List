@@ -17,6 +17,8 @@
 		7EAE1FA52ABCF46E0029BF26 /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAE1FA42ABCF46E0029BF26 /* EditViewModel.swift */; };
 		7EAE1FA72ABCF47A0029BF26 /* WikipediaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAE1FA62ABCF47A0029BF26 /* WikipediaAPI.swift */; };
 		7EAE1FAA2ABD04110029BF26 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAE1FA92ABD04110029BF26 /* Marker.swift */; };
+		7EAE1FAC2ABD25030029BF26 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAE1FAB2ABD25030029BF26 /* LoadingState.swift */; };
+		7EAE1FAE2ABD27750029BF26 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAE1FAD2ABD27750029BF26 /* ErrorManager.swift */; };
 		7EC218852ABA6C6500D03C01 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC218842ABA6C6500D03C01 /* AuthenticationManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +34,8 @@
 		7EAE1FA42ABCF46E0029BF26 /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
 		7EAE1FA62ABCF47A0029BF26 /* WikipediaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaAPI.swift; sourceTree = "<group>"; };
 		7EAE1FA92ABD04110029BF26 /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
+		7EAE1FAB2ABD25030029BF26 /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
+		7EAE1FAD2ABD27750029BF26 /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
 		7EC218842ABA6C6500D03C01 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,6 +128,8 @@
 			isa = PBXGroup;
 			children = (
 				7EC218842ABA6C6500D03C01 /* AuthenticationManager.swift */,
+				7EAE1FAB2ABD25030029BF26 /* LoadingState.swift */,
+				7EAE1FAD2ABD27750029BF26 /* ErrorManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -208,7 +214,9 @@
 			files = (
 				7EAE1FA52ABCF46E0029BF26 /* EditViewModel.swift in Sources */,
 				7EC218852ABA6C6500D03C01 /* AuthenticationManager.swift in Sources */,
+				7EAE1FAC2ABD25030029BF26 /* LoadingState.swift in Sources */,
 				7EAE1FA32ABCF45F0029BF26 /* HomeViewModel.swift in Sources */,
+				7EAE1FAE2ABD27750029BF26 /* ErrorManager.swift in Sources */,
 				7EAE1FA12ABCF44B0029BF26 /* EditView.swift in Sources */,
 				7EAE1F9F2ABCF4350029BF26 /* HomeView.swift in Sources */,
 				7EAE1F9D2ABCF4180029BF26 /* Location.swift in Sources */,
