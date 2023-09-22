@@ -36,6 +36,7 @@ struct EditView: View {
                 }
             }
             .navigationTitle("Place Details")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem {
                     Button("Save") {
