@@ -11,7 +11,7 @@ import SwiftUI
 struct BocketListApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
         }
     }
 }
