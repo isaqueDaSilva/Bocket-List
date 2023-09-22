@@ -53,11 +53,7 @@ struct HomeView: View {
                 }
             }
             .sheet(item: $viewModel.selectedPlace) { place in
-                EditView(location: place) { editedPlace in
-                    if let index = viewModel.locations.firstIndex(of: place) {
-                        viewModel.locations[index] = editedPlace
-                    }
-                }
+                EditView(location: place) { viewModel.updateLocation($0) }
             }
         }
     }

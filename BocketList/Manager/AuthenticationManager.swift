@@ -20,9 +20,13 @@ class AuthenticationManager: ObservableObject {
             
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, error in
                 if success {
-                    self.isAuthenticated = true
+                    DispatchQueue.main.async {
+                        self.isAuthenticated = true
+                    }
                 } else {
-                    self.isAuthenticated = false
+                    DispatchQueue.main.async {
+                        self.isAuthenticated = false
+                    }
                 }
             }
         }

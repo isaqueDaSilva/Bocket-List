@@ -8,7 +8,7 @@
 import Foundation
 
 extension EditView {
-    class EditViewModel: ObservableObject {
+    @MainActor class EditViewModel: ObservableObject {
         @Published var name: String
         @Published var description: String
         @Published var loadingState: LoadingState = .loading
