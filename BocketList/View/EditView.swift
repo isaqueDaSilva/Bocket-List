@@ -20,9 +20,17 @@ struct EditView: View {
             }
             .navigationTitle("Place Details")
             .toolbar {
-                Button("Save") {
-                    viewModel.save()
-                    dismiss()
+                ToolbarItem {
+                    Button("Save") {
+                        viewModel.save()
+                        dismiss()
+                    }
+                }
+                
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
                 }
             }
         }
