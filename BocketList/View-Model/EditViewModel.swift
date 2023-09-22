@@ -18,13 +18,11 @@ extension EditView {
         var onSave: (Location) -> Void
         
         func save() {
-            DispatchQueue.main.async {
-                var editedLocation = self.location
-                editedLocation.id = UUID()
-                editedLocation.name = self.name
-                editedLocation.description = self.description
-                self.onSave(editedLocation)
-            }
+            var editedLocation = self.location
+            editedLocation.id = UUID()
+            editedLocation.name = self.name
+            editedLocation.description = self.description
+            self.onSave(editedLocation)
         }
         
         func fetchNearbyPlaces() async {

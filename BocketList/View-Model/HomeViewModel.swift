@@ -15,9 +15,8 @@ extension HomeView {
         @Published var selectedPlace: Location?
         
         func addNewLocation() {
+            let newLocation = Location(id: UUID(), name: "New Location", description: "", latitude: currentLocation.center.latitude, longitude: currentLocation.center.longitude)
             DispatchQueue.main.async {
-                let newLocation = Location(id: UUID(), name: "New Location", description: "", latitude: self.currentLocation.center.latitude, longitude: self.currentLocation.center.longitude)
-                
                 self.locations.append(newLocation)
             }
         }
