@@ -14,8 +14,8 @@ struct EditView: View {
         NavigationView {
             Form {
                 Section {
-                    TextField("Insert the name of place", text: $viewModel.name)
-                    TextField("Insert a description for the place", text: $viewModel.description)
+                    TextField("Insert the name of place...", text: $viewModel.name)
+                    TextField("Insert a description for the place...", text: $viewModel.description)
                 }
             }
             .navigationTitle("Place Details")
