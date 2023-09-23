@@ -9,7 +9,8 @@ import Foundation
 import MapKit
 
 extension HomeView {
-    @MainActor class HomeViewModel: ObservableObject {
+    @MainActor 
+    class HomeViewModel: ObservableObject {
         @Published private(set) var locations: [Location]
         @Published var currentLocation = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -22.9035, longitude: -43.2096), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
         @Published var selectedPlace: Location?
