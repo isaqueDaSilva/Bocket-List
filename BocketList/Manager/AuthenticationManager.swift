@@ -31,4 +31,8 @@ class AuthenticationManager: ObservableObject {
             }
         }
     }
+    
+    init() {
+        self.authenticate()
+    }
 }
