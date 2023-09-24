@@ -22,9 +22,7 @@ extension EditView {
             editedLocation.id = UUID()
             editedLocation.name = self.name
             editedLocation.description = self.description
-            Task { @MainActor in
-                self.onSave(editedLocation)
-            }
+            self.onSave(editedLocation)
         }
         
         func fetchNearbyPlaces() async {
@@ -44,9 +42,7 @@ extension EditView {
                 
                 let dataDecode = try JSONDecoder().decode(Result.self, from: data)
                 pages = dataDecode.query.pages.values.sorted()
-                DispatchQueue.main.async {
-                    self.loadingState = .loaded
-                }
+                self.loadingState = .loaded
             } catch let error {
                 print("Error to fetch data \(error).")
                 loadingState = .failed
