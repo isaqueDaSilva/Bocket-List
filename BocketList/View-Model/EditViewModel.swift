@@ -22,7 +22,9 @@ extension EditView {
             editedLocation.id = UUID()
             editedLocation.name = self.name
             editedLocation.description = self.description
-            self.onSave(editedLocation)
+            Task { @MainActor in
+                self.onSave(editedLocation)
+            }
         }
         
         func fetchNearbyPlaces() async {

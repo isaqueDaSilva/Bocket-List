@@ -20,12 +20,12 @@ struct LoginView: View {
                 Text("Bucket List is locked")
                     .font(.title.bold())
                     .padding(5)
-                Text("Use Face ID or Touch ID to unlock Bucket List")
+                Text("Use the \(manager.typeOfBiometry) to unlock Bucket List")
                     .font(.headline)
                 
                 Spacer()
                 
-                Button("Unlock Bucket List") {
+                Button("Use the \(manager.typeOfBiometry)") {
                     manager.authenticate()
                 }
                 .font(.headline.bold())
