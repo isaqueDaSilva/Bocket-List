@@ -11,7 +11,7 @@ import MapKit
 extension HomeView {
     @MainActor 
     class HomeViewModel: ObservableObject {
-        @Published private(set) var locations = [Location]()
+        @Published var locations = [Location]()
         @Published var currentLocation = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -22.9035, longitude: -43.2096), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
         @Published var selectedPlace: Location?
         
@@ -19,7 +19,7 @@ extension HomeView {
         
         func addNewLocation() {
             let newLocation = Location(id: UUID(), name: "New Location", description: "", latitude: currentLocation.center.latitude, longitude: currentLocation.center.longitude)
-            Task { @MainActor in
+            DispatchQueue.main.async{
                 self.locations.append(newLocation)
                 self.save()
             }
@@ -29,7 +29,7 @@ extension HomeView {
             guard let selectedPlace = selectedPlace else { return }
             
             if let index = self.locations.firstIndex(of: selectedPlace) {
-                Task { @MainActor in
+                DispatchQueue.main.async {
                     self.locations[index] = location
                     self.save()
                 }
