@@ -11,22 +11,33 @@ import LocalAuthentication
 class AuthenticationManager: ObservableObject {
     @Published var isAuthenticated: Bool = false
     
+    let context = LAContext()
+    
+    var typeOfBiometry: String {
+        var type = ""
+        if context.biometryType == .faceID {
+            type = "Face ID"
+        } else if context.biometryType == .touchID {
+            type = "Touch ID"
+        }
+        return type
+    }
+    
     func authenticate() {
-        let context = LAContext()
         var error: NSError?
         
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+        if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
             let reason = "We need to unlock your data."
             
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, error in
+            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { success, error in
                 if success {
                     DispatchQueue.main.async {
                         self.isAuthenticated = true
                     }
-                } else {
-                    DispatchQueue.main.async {
-                        self.isAuthenticated = false
-                    }
+                }
+                
+                if (error != nil) {
+                    print("Error: \(String(describing: error?.localizedDescription))")
                 }
             }
         }
