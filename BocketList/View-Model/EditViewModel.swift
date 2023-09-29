@@ -9,6 +9,8 @@ import Foundation
 
 extension EditView {
     @MainActor class EditViewModel: ObservableObject {
+        let manager = LocationManager.shared
+        
         @Published var name: String
         @Published var description: String
         @Published var loadingState: LoadingState = .loading
@@ -18,11 +20,15 @@ extension EditView {
         var onSave: (Location) -> Void
         
         func save() {
-            var editedLocation = self.location
-            editedLocation.id = UUID()
-            editedLocation.name = self.name
-            editedLocation.description = self.description
-            self.onSave(editedLocation)
+            Task {
+                await manager.editedCurrentLocation(location: location, name: name, description: description, onSave)
+            }
+            
+//            var editedLocation = self.location
+//            editedLocation.id = UUID()
+//            editedLocation.name = self.name
+//            editedLocation.description = self.description
+//            self.onSave(editedLocation)
         }
         
         func fetchNearbyPlaces() async {

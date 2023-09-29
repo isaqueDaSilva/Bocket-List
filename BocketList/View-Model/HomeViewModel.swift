@@ -11,56 +11,49 @@ import MapKit
 extension HomeView {
     @MainActor 
     class HomeViewModel: ObservableObject {
+        let manager = LocationManager.shared
+        
         @Published var locations = [Location]()
         @Published var currentLocation = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -22.9035, longitude: -43.2096), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
         @Published var selectedPlace: Location?
         
-        let savePath = FileManager.documentyDirectory.appendingPathComponent("SavedPlace")
-        
         func addNewLocation() {
-            let newLocation = Location(id: UUID(), name: "New Location", description: "", latitude: currentLocation.center.latitude, longitude: currentLocation.center.longitude)
-            DispatchQueue.main.async{
-                self.locations.append(newLocation)
-                self.save()
+            Task {
+                await manager.addNewLocation(latitude: currentLocation.center.latitude, longitude: currentLocation.center.longitude)
             }
+            getLocations()
         }
         
         func updateLocation(_ location: Location) {
-            guard let selectedPlace = selectedPlace else { return }
-            
-            if let index = self.locations.firstIndex(of: selectedPlace) {
-                DispatchQueue.main.async {
-                    self.locations[index] = location
-                    self.save()
-                }
+            Task {
+                await manager.updateLocation(selectedPlace: selectedPlace, location)
             }
+            getLocations()
         }
         
         func save() {
-            do {
-                let data = try JSONEncoder().encode(self.locations)
-                try data.write(to: savePath, options: [.atomic, .completeFileProtection])
-            } catch let error {
-                print("Falied to save data in FileManager. Error: \(error)")
+            Task {
+                await manager.save()
             }
+            getLocations()
         }
         
         func decodeLocations() {
-            do {
-                let data = try Data(contentsOf: savePath)
-                let locationsDecoded = try JSONDecoder().decode([Location].self, from: data)
-                DispatchQueue.main.async {
-                    self.locations = locationsDecoded
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    self.locations = []
-                }
+            Task {
+                await manager.decodeLocations()
+            }
+            getLocations()
+        }
+        
+        func getLocations() {
+            Task {
+                self.locations = await manager.locations
             }
         }
         
         init() {
             self.decodeLocations()
+            self.getLocations()
         }
     }
 }

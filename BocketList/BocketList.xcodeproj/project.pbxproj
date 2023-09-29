@@ -10,6 +10,7 @@
 		7E06B88F2AB8F1310091D146 /* BocketListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E06B88E2AB8F1310091D146 /* BocketListApp.swift */; };
 		7E06B8932AB8F1330091D146 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E06B8922AB8F1330091D146 /* Assets.xcassets */; };
 		7E06B8962AB8F1330091D146 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E06B8952AB8F1330091D146 /* Preview Assets.xcassets */; };
+		7E5ACD552AC552220052B2F5 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5ACD542AC552220052B2F5 /* LocationManager.swift */; };
 		7E5C80002ABE53D300A07FBE /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C7FFF2ABE53D300A07FBE /* FileManager.swift */; };
 		7E5C80042ABE702C00A07FBE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C80032ABE702C00A07FBE /* LoginView.swift */; };
 		7EAE1F9D2ABCF4180029BF26 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAE1F9C2ABCF4180029BF26 /* Location.swift */; };
@@ -29,6 +30,7 @@
 		7E06B88E2AB8F1310091D146 /* BocketListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BocketListApp.swift; sourceTree = "<group>"; };
 		7E06B8922AB8F1330091D146 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7E06B8952AB8F1330091D146 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7E5ACD542AC552220052B2F5 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7E5C7FFF2ABE53D300A07FBE /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		7E5C80032ABE702C00A07FBE /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7EAE1F9C2ABCF4180029BF26 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 		7EAE1F9B2ABCF3E50029BF26 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				7E5ACD542AC552220052B2F5 /* LocationManager.swift */,
 				7EC218842ABA6C6500D03C01 /* AuthenticationManager.swift */,
 				7EAE1FAB2ABD25030029BF26 /* LoadingState.swift */,
 				7EAE1FAD2ABD27750029BF26 /* ErrorManager.swift */,
@@ -228,6 +231,7 @@
 				7E5C80042ABE702C00A07FBE /* LoginView.swift in Sources */,
 				7EAE1F9F2ABCF4350029BF26 /* HomeView.swift in Sources */,
 				7EAE1F9D2ABCF4180029BF26 /* Location.swift in Sources */,
+				7E5ACD552AC552220052B2F5 /* LocationManager.swift in Sources */,
 				7EAE1FA72ABCF47A0029BF26 /* WikipediaAPI.swift in Sources */,
 				7E06B88F2AB8F1310091D146 /* BocketListApp.swift in Sources */,
 				7EAE1FAA2ABD04110029BF26 /* Marker.swift in Sources */,
