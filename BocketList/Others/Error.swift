@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum Erros: Error {
+enum Errors: Error {
     case invalidURL, invalidResponse, invalidData
 }

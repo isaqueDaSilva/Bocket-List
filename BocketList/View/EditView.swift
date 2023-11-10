@@ -51,11 +51,10 @@ struct EditView: View {
                     }
                 }
             }
-            .task { await viewModel.fetchNearbyPlaces() }
         }
     }
     
-    init(location: Location, onSave: @escaping (Location) -> Void) {
-        _viewModel = StateObject(wrappedValue: EditViewModel(location: location, onSave: onSave))
+    init(manager: LocationManager, location: Location, onSave: @escaping () -> Void) {
+        _viewModel = StateObject(wrappedValue: EditViewModel(manager: manager, location: location, onSave: onSave))
     }
 }

@@ -10,22 +10,33 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()
+    
     var body: some View {
         ZStack {
             Map(coordinateRegion: $viewModel.currentLocation, annotationItems: viewModel.locations) { location in
                 MapAnnotation(coordinate: location.coordinate) {
-                    VStack {
+                    VStack(alignment: .center) {
                         Marker(color: .red)
                             .padding()
                             .background(.white.opacity(0.75))
                             .clipShape(Circle())
-                            .padding(.trailing)
                         
                         Text(location.name)
                             .fixedSize()
                     }
+                    .padding()
                     .onTapGesture {
                         viewModel.selectedPlace = location
+                    }
+                    .contextMenu {
+                        Button {
+                            viewModel.deleteLocation(location: location)
+                        } label: {
+                            HStack {
+                                Text("Delete \(location.name)")
+                                Image(systemName: "trash")
+                            }
+                        }
                     }
                 }
             }
@@ -52,7 +63,7 @@ struct HomeView: View {
             }
         }
         .sheet(item: $viewModel.selectedPlace) { place in
-            EditView(location: place) { viewModel.updateLocation($0) }
+            EditView(manager: viewModel.manager, location: place) { viewModel.fetchLocations() }
         }
     }
 }

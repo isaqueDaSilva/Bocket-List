@@ -8,59 +8,57 @@
 import Foundation
 
 extension EditView {
-    @MainActor class EditViewModel: ObservableObject {
-        let manager = LocationManager.shared
+    class EditViewModel: ObservableObject {
+        let manager: LocationManager
+        var location: Location
+        var onSave: () -> Void
         
         @Published var name: String
         @Published var description: String
         @Published var loadingState: LoadingState = .loading
         @Published var pages = [Page]()
         
-        var location: Location
-        var onSave: (Location) -> Void
-        
         func save() {
-            Task {
-                await manager.editedCurrentLocation(location: location, name: name, description: description, onSave)
+            Task { @MainActor in
+                await manager.editedCurrentLocation(location: location, name: name, description: description, onSave: onSave)
             }
-            
-//            var editedLocation = self.location
-//            editedLocation.id = UUID()
-//            editedLocation.name = self.name
-//            editedLocation.description = self.description
-//            self.onSave(editedLocation)
         }
         
-        func fetchNearbyPlaces() async {
-            let urlString = "https://en.wikipedia.org/w/api.php?ggscoord=\(location.coordinate.latitude)%7C\(location.coordinate.longitude)&action=query&prop=coordinates%7Cpageimages%7Cpageterms&colimit=50&piprop=thumbnail&pithumbsize=500&pilimit=50&wbptterms=description&generator=geosearch&ggsradius=10000&ggslimit=50&format=json"
-            
-            guard let url = URL(string: urlString) else {
-                print("Bad URL: \(urlString)")
-                return
-            }
-            
-            do {
-                let (data, response) = try await URLSession.shared.data(from: url)
-                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                    print("Bad response!")
-                    throw Erros.invalidResponse
+        func fetchNearbyPlaces() {
+            Task {
+                let urlString = "https://en.wikipedia.org/w/api.php?ggscoord=\(location.coordinate.latitude)%7C\(location.coordinate.longitude)&action=query&prop=coordinates%7Cpageimages%7Cpageterms&colimit=50&piprop=thumbnail&pithumbsize=500&pilimit=50&wbptterms=description&generator=geosearch&ggsradius=10000&ggslimit=50&format=json"
+                
+                guard let url = URL(string: urlString) else {
+                    print("Bad URL: \(urlString)")
+                    return
                 }
                 
-                let dataDecode = try JSONDecoder().decode(Result.self, from: data)
-                pages = dataDecode.query.pages.values.sorted()
-                self.loadingState = .loaded
-            } catch let error {
-                print("Error to fetch data \(error).")
-                loadingState = .failed
+                do {
+                    let (data, response) = try await URLSession.shared.data(from: url)
+                    guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                        print("Bad response!")
+                        throw Errors.invalidResponse
+                    }
+                    
+                    let dataDecode = try JSONDecoder().decode(Result.self, from: data)
+                    pages = dataDecode.query.pages.values.sorted()
+                    self.loadingState = .loaded
+                } catch let error {
+                    print("Error to fetch data \(error).")
+                    loadingState = .failed
+                }
             }
         }
         
-        init(location: Location, onSave: @escaping (Location) -> Void) {
+        init(manager: LocationManager, location: Location, onSave: @escaping () -> Void) {
+            self.manager = manager
             self.location = location
             self.onSave = onSave
-            
+
             _name = Published(initialValue: location.name)
             _description = Published(initialValue: location.description)
+            
+            self.fetchNearbyPlaces()
         }
     }
 }
